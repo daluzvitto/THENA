@@ -1,0 +1,64 @@
+<div id="modulo-conpag" class="module-section active">
+    <div class="cadastros-header">
+        <div class="cadastros-title">Condições de Pagamento</div>
+    </div>
+
+    <div id="view-lista-conpag">
+        <div class="search-bar" style="margin-bottom: 20px; display: flex; justify-content: space-between;">
+            <div></div> <button class="btn-primary" onclick="abrirFormularioConpag()">⊕ Nova Condição</button>
+        </div>
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Título</th>
+                        <th>Regra</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-conpag-body">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="view-form-conpag" class="hidden">
+        <div class="form-card">
+            <div class="form-header">
+                <span id="titulo-form-conpag">Nova Condição de Pagamento</span>
+                <button class="btn-secondary" onclick="voltarParaListaConpag()">← Voltar para Lista</button>
+            </div>
+            
+            <div class="form-body active">
+                <div class="row">
+                    <div class="form-group" style="flex: 0.3;">
+                        <label>Tipo de Condição *</label>
+                        <select id="a4_tipo" onchange="atualizarDicaRegra()">
+                            <option value="1">Regra 01</option>
+                            <option value="2">Regra 02</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex: 0.75;">
+                        <label>Descrição da Condição *</label>
+                        <input type="text" id="a4_nome" placeholder="Ex: 00/30/60 DIAS" oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group full-width">
+                        <label>Regra do Sistema *</label>
+                        <input type="text" id="a4_regra" placeholder="Ex: 00,30,60">
+                        <small id="dica-regra" style="color: #2196F3; margin-top: 5px; display: block; font-weight: 500;">
+                            Regra de Dias: Divide o valor total em parcelas iguais. Ex: '00,30,60' = 3 parcelas (Entrada, 30 e 60 dias).
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button class="btn-primary" onclick="salvarConpag()">✓ Salvar Condição</button>
+            </div>
+        </div>
+    </div>
+</div>

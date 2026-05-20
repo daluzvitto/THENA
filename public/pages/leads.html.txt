@@ -1,0 +1,87 @@
+<div id="modulo-leads" class="module-section active">
+    <div class="cadastros-header">
+        <div class="cadastros-title">Gestão de Oportunidades (Leads)</div>
+    </div>
+
+    <div id="view-lista-leads">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; background: #f8f9fa; padding: 10px 15px; border-radius: 6px; border: 1px solid #eee;">
+            <div style="display: flex; gap: 20px; font-size: 13px; font-weight: bold;">
+                <span style="display: flex; align-items: center; gap: 6px;"><span style="display:inline-block; width:12px; height:12px; background:#ffc107; border-radius:50%;"></span> Oportunidade Ativa</span>
+                <span style="display: flex; align-items: center; gap: 6px;"><span style="display:inline-block; width:12px; height:12px; background:#28a745; border-radius:50%;"></span> Contrato Encerrado</span>
+                <span style="display: flex; align-items: center; gap: 6px;"><span style="display:inline-block; width:12px; height:12px; background:#dc3545; border-radius:50%;"></span> Lead Cancelado</span>
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="input-busca-lead" placeholder="Buscar oportunidade..." onkeyup="filtrarLeads()" style="width: 250px; padding: 6px;">
+                <select id="filtro-funil" onchange="filtrarLeads()" style="padding: 6px;">
+                    <option value="Todos">Todas as Fases</option>
+                    <option value="1">Contato Inicial</option>
+                    <option value="2">Reunião Agendada</option>
+                    <option value="3">Orçamento</option>
+                    <option value="4">Contratos</option>
+                    <option value="5">Encerrado</option>
+                </select>
+            </div>
+            <button class="btn-primary" onclick="abrirFormularioLead()">⊕ Nova Oportunidade</button>
+        </div>
+        
+        <div class="data-table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th style="width: 100px; text-align: center;">Status</th>
+                        <th>Nº Lead</th>
+                        <th>Cliente</th>
+                        <th>Oportunidade (Título)</th>
+                        <th>Fase Atual</th>
+                        <th style="text-align: right; padding-right: 20px;">Ações Disponíveis da Esteira</th>
+                    </tr>
+                </thead>
+                <tbody id="tabela-leads-body"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="view-form-lead" class="hidden">
+        <div class="form-card">
+            <div class="form-header">
+                <span id="titulo-form-lead">Nova Oportunidade</span>
+                <button class="btn-secondary" onclick="voltarParaListaLead()">← Voltar</button>
+            </div>
+            <div class="form-body active">
+                
+                <input type="hidden" id="c0_cod"> <div class="row">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Cliente da Oportunidade *</label>
+                        <select id="c0_cliente" onchange="verificarClienteLead()"></select>
+                    </div>
+                </div>
+
+                <div class="row hidden" id="area-novo-cliente-lead" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #ddd;">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Nome do Novo Cliente *</label>
+                        <input type="text" id="c0_nome_novo" placeholder="Ex: Maria das Dores">
+                    </div>
+                    <div class="form-group">
+                        <label>Celular / WhatsApp *</label>
+                        <input type="text" id="c0_fone_novo" maxlength="15" oninput="mascaraTelefone(this)" placeholder="(00) 00000-0000">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Título da Oportunidade *</label>
+                        <input type="text" id="c0_titulo" placeholder="Ex: Modificar de 'Casa da Praia' para 'Casa do Campo'">
+                    </div>
+                    <div class="form-group">
+                        <label>Fase do Processo</label>
+                        <input type="text" id="display_fase_form" readonly value="1 - Contato Inicial" style="background: #e9ecef; font-weight: bold; color: #495057;">
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary" onclick="salvarLead()">✓ Gravar Informações</button>
+            </div>
+        </div>
+    </div>
+</div>
